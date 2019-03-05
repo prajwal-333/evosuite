@@ -338,6 +338,7 @@ public class EvoSuite {
 
         try {
             EvoSuite evosuite = new EvoSuite();
+            System.out.println("Reached main in Evosuite.java"); //mycode
             evosuite.parseCommandLine(args);
         } catch (Throwable t) {
             logger.error("Fatal crash on main EvoSuite process. Class "

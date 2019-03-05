@@ -89,6 +89,8 @@ public class TestSuiteWriter implements Opcodes {
 
     private TestNameGenerationStrategy nameGenerator = null;
 
+    private static int test_writer_iteration = 1;
+
     /**
      * Add test to suite. If the test is a prefix of an existing test, just keep
      * existing test. If an existing test is a prefix of the test, replace the
@@ -185,6 +187,7 @@ public class TestSuiteWriter implements Opcodes {
      */
     public List<File> writeTestSuite(String name, String directory, List<ExecutionResult> cachedResults) throws IllegalArgumentException {
 
+        //static int test_writer_iteration = 1;
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("Empty test class name");
         }
@@ -196,8 +199,25 @@ public class TestSuiteWriter implements Opcodes {
         }
 
         List<File> generated = new ArrayList<File>();
+
+        //mycode_starts
+        if(directory.equals(Properties.TEST_DIR))
+        {
+            if(test_writer_iteration == 1)
+            {
+                String temp = TestSuiteWriterUtils.makeDirectory(directory);
+            }
+            logger.info("Current value of test_writer_iteration is: " + test_writer_iteration);
+            directory = directory + "/" + directory + test_writer_iteration;
+            test_writer_iteration = test_writer_iteration + 1;
+            logger.info("Just created directory: " + directory);
+
+        }
+        //mycode_ends
+
         String dir = TestSuiteWriterUtils.makeDirectory(directory);
         String content = "";
+
 
         // Execute all tests
         executor.newObservers();

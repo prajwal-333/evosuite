@@ -84,6 +84,7 @@ public class ClientProcess {
 
 		LoggingUtils.getEvoLogger().info("* " + getPrettyPrintIdentifier() + "Connecting to master process on port "
 				+ Properties.PROCESS_COMMUNICATION_PORT);
+		//System.out.println("Reached run in ClientProcess.java"); //mycode
 
 		boolean registered = ClientServices.getInstance().registerServices(getIdentifier());
 
@@ -214,6 +215,7 @@ public class ClientProcess {
 		 * might be issues with following System.exit if successive
 		 * threads change it if this thread is still running
 		 */
+
 		boolean onThread = Properties.CLIENT_ON_THREAD;
 		
         if (args.length > 0) {
@@ -226,6 +228,7 @@ public class ClientProcess {
 			LoggingUtils.getEvoLogger().info("* Starting " + getIdentifier());
 			ClientProcess process = new ClientProcess();
 			TimeController.resetSingleton();
+
 			process.run();
 			if (!onThread) {
 				/*

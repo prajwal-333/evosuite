@@ -894,6 +894,7 @@ public abstract class GeneticAlgorithm<T extends Chromosome> implements SearchAl
 	 */
 	protected void notifyIteration() {
 		for (SearchListener listener : listeners) {
+			//logger.info("This is important: " + listener.toString()); //mycode
 			listener.iteration(this);
 		}
 	}

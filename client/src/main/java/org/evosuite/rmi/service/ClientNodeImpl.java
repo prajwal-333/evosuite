@@ -261,6 +261,33 @@ public class ClientNodeImpl implements ClientNodeLocal, ClientNodeRemote {
 		}
 	}
 
+		//mycode_starts
+
+
+	public void mychangeState(ClientState state, int i)
+	{
+		if(i == 1)
+		{
+			changeState(state);
+			return;
+		}
+		ClientStateInformation information = new ClientStateInformation(state);
+		logger.info("My client changing state from " + this.state + " to " + state);
+		this.state = state;
+		return;
+
+	}
+
+	public void mychangeState(ClientState state, ClientStateInformation information, int i)
+	{
+		if(i == 1)
+			changeState(state, information);
+
+		mychangeState(state, i);
+	}
+
+
+	//mycode_ends
 	@Override
 	public void updateStatistics(Chromosome individual) {
 		logger.info("Sending current best individual to master process");

@@ -43,6 +43,10 @@ public interface ClientNodeLocal extends Listenable<Set<? extends Chromosome>> {
 
 	public void changeState(ClientState state, ClientStateInformation information);
 
+	public void mychangeState(ClientState state, int i);	//mycode
+
+	public void mychangeState(ClientState state, ClientStateInformation information, int i); //mycode
+
 	public void updateStatistics(Chromosome individual);
 
 	public void flushStatisticsForClassChange();

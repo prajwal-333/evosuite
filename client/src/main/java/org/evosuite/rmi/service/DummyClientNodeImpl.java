@@ -48,6 +48,18 @@ public class DummyClientNodeImpl extends ClientNodeImpl {
 		
 	}
 
+	//mycode_starts
+	public void mychangeState(ClientState state, int i) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void mychangeState(ClientState state, ClientStateInformation information, int i){
+		// TODO Auto-generated method stub
+	}
+		//mycode_ends
+
+
 	@Override
 	public void changeState(ClientState state,
 			ClientStateInformation information) {

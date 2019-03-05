@@ -24,6 +24,7 @@ package org.evosuite.ga.metaheuristics;
 
 import org.evosuite.ga.Chromosome;
 import org.evosuite.ga.ChromosomeFactory;
+import org.evosuite.utils.LoggingUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -85,6 +86,7 @@ public class RandomSearch<T extends Chromosome> extends GeneticAlgorithm<T> {
 	@Override
 	public void generateSolution() {
 		notifySearchStarted();
+		LoggingUtils.getEvoLogger().info("Reached generateSolution of RandomSearch class"); //mycode
 		if (population.isEmpty())
 			initializePopulation();
 

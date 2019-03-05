@@ -22,8 +22,10 @@ package org.evosuite.ga.metaheuristics;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.evosuite.ClientProcess;
 import org.evosuite.Properties;
 import org.evosuite.TimeController;
+import org.evosuite.contracts.FailingTestSet;
 import org.evosuite.ga.Chromosome;
 import org.evosuite.ga.ChromosomeFactory;
 import org.evosuite.ga.ConstructionFailedException;
@@ -31,9 +33,16 @@ import org.evosuite.ga.FitnessFunction;
 import org.evosuite.ga.FitnessReplacementFunction;
 import org.evosuite.ga.ReplacementFunction;
 import org.evosuite.ga.localsearch.LocalSearchBudget;
+import org.evosuite.junit.writer.TestSuiteWriter;
+import org.evosuite.result.TestGenerationResult;
+import org.evosuite.testcase.TestCase;
+import org.evosuite.testsuite.TestSuiteChromosome;
+import org.evosuite.utils.LoggingUtils;
 import org.evosuite.utils.Randomness;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.evosuite.TestSuiteGenerator.writeJUnitTestsAndCreateResult;
 
 /**
  * Implementation of steady state GA
@@ -47,6 +56,23 @@ public class MonotonicGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 	protected ReplacementFunction replacementFunction;
 
 	private final Logger logger = LoggerFactory.getLogger(MonotonicGA.class);
+
+	private double[] fitness_values = new double[10];
+	private double[] fitness_means = new double[10]; //mycode
+	private double current_fitness_total = 0;//mycode
+	private int current_pos = 0;
+	private double current_mean_total = 0;
+	private int array_size = 0;
+
+
+
+	//mycode
+	private static int starvationCounter = 0;
+	private static double bestFitness = Double.MAX_VALUE;
+	private static double lastBestFitness = Double.MAX_VALUE;
+	//mycode
+	//private double standard_deviation = -1000000000;
+
 
 	/**
 	 * Constructor
@@ -212,6 +238,47 @@ public class MonotonicGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 														// rounding error in LS,
 														// but hard to debug :(
 
+
+//	public void writeJUnitFailingTests() {
+//		if (!Properties.CHECK_CONTRACTS)
+//			return;
+//
+//		FailingTestSet.sendStatistics();
+//
+//		if (Properties.JUNIT_TESTS) {
+//
+//			TestSuiteWriter suiteWriter = new TestSuiteWriter();
+//			//suiteWriter.insertTests(FailingTestSet.getFailingTests());
+//
+//			TestSuiteChromosome suite = new TestSuiteChromosome();
+//			for(TestCase test : FailingTestSet.getFailingTests()) {
+//				test.setFailing();
+//				suite.addTest(test);
+//			}
+//
+//			String name = Properties.TARGET_CLASS.substring(Properties.TARGET_CLASS.lastIndexOf(".") + 1);
+//			String testDir = Properties.TEST_DIR;
+//			LoggingUtils.getEvoLogger().info("* " + ClientProcess.getPrettyPrintIdentifier() + "Writing failing test cases '"
+//					+ (name + Properties.JUNIT_SUFFIX) + "' to " + testDir);
+//			suiteWriter.insertAllTests(suite.getTests());
+//			FailingTestSet.writeJUnitTestSuite(suiteWriter);
+//
+//			suiteWriter.writeTestSuite(name + Properties.JUNIT_FAILED_SUFFIX, testDir, suite.getLastExecutionResults());
+//		}
+//	}
+
+
+	private double compute_std_dev(double[] A, double total)
+	{
+		double mymean = total / 10;
+		double sum = 0;
+		for(int i=0;i<10;i++)
+		{
+			sum = sum + ((A[i] - mymean) * (A[i] - mymean));
+		}
+		return Math.sqrt(sum / 10);
+	}
+
 	/** {@inheritDoc} */
 	@Override
 	public void generateSolution() {
@@ -225,16 +292,22 @@ public class MonotonicGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 		}
 
 		logger.debug("Starting evolution");
-		int starvationCounter = 0;
-		double bestFitness = Double.MAX_VALUE;
-		double lastBestFitness = Double.MAX_VALUE;
+
 		if (getFitnessFunction().isMaximizationFunction()) {
 			bestFitness = 0.0;
 			lastBestFitness = 0.0;
 		}
 
+		//int num_iteration = 1;
+		logger.info("The size of the population is: " + population.size());
+		//LoggingUtils.getEvoLogger().info("The population object belongs to:", population.getClass() ); //mycode
+		//System.out.println("hello world"); //mycode
 		while (!isFinished()) {
-			
+
+            Properties.isCompleted = 1;
+		//	logger.info("Iteration: " + num_iteration ); //mycode
+		//	num_iteration++; //mycode
+
 			logger.info("Population size before: " + population.size());
 			// related to Properties.ENABLE_SECONDARY_OBJECTIVE_AFTER;
 			// check the budget progress and activate a secondary criterion
@@ -244,6 +317,7 @@ public class MonotonicGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 				double bestFitnessBeforeEvolution = getBestFitness();
 				evolve();
 				sortPopulation();
+
 				double bestFitnessAfterEvolution = getBestFitness();
 
 				if (getFitnessFunction().isMaximizationFunction())
@@ -302,20 +376,77 @@ public class MonotonicGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 			}
 
 			updateSecondaryCriterion(starvationCounter);
+			//mycode_starts
+			if(array_size < 10)
+			{
 
+				fitness_values[current_pos] = bestFitness;
+				array_size++;
+				current_fitness_total = current_fitness_total + bestFitness;
+				//fitness_means[current_pos] = current_fitness_total / array_size ;
+				//current_mean_total = current_fitness_total + (current_fitness_total / array_size) ;
+				current_pos = (current_pos + 1) % 10;
+
+
+			}
+			else
+			{
+				double temp = fitness_values[current_pos];
+				fitness_values[current_pos] = bestFitness;
+				current_fitness_total = (current_fitness_total - temp) + bestFitness;
+				temp = fitness_means[current_pos];
+				fitness_means[current_pos] = current_fitness_total / 10;
+				current_mean_total = (current_mean_total - temp) + fitness_means[current_pos];
+				current_pos = (current_pos + 1) % 10;
+				temp = compute_std_dev(fitness_means, current_mean_total);
+				if(temp > 0.7) {
+					logger.info("Standard Deviation is: " + temp);
+					//return 1;
+					//standard_deviation = temp;
+					Properties.isCompleted = 0;
+					//may have to archive it
+					logger.info("Archiving the test suite");
+					TimeController.execute(this::updateBestIndividualFromArchive, "update from archive", 5_000);
+					return;
+//					TestSuiteChromosome bestIndividual = (TestSuiteChromosome)getBestIndividual();
+//					TestGenerationResult result = writeJUnitTestsAndCreateResult(bestIndividual);
+//					writeJUnitFailingTests();
+//					logger.info("Completed writing Test Suite");
+
+				}
+
+
+			}
+			//mycode_ends
 			logger.info("Current iteration: " + currentIteration);
 			this.notifyIteration();
 
 			logger.info("Population size: " + population.size());
 			logger.info("Best individual has fitness: " + population.get(0).getFitness());
-			logger.info("Worst individual has fitness: " + population.get(population.size() - 1).getFitness());
+			logger.info("Worst individual has fitness2: " + population.get(population.size() - 1).getFitness());
+			logger.info("Hello world");
+			//standard_deviation = 1000000000;
+			Properties.isCompleted = 1;
 
 		}
+
+
 		// archive
 		TimeController.execute(this::updateBestIndividualFromArchive, "update from archive", 5_000);
-
+		//standard_deviation = 1000000000;
 		notifySearchFinished();
 	}
+
+	//mycode_starts
+//	public int mygenerateSolution() {
+//
+//		generateSolution();
+//		if(standard_deviation != 1000000000)
+//			return 1;
+//		return 0;
+//	}
+
+	//mycode_ends
 
 	private double getBestFitness() {
 		T bestIndividual = getBestIndividual();

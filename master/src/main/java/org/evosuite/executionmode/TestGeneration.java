@@ -213,6 +213,7 @@ public class TestGeneration {
 	        List<String> args) {
 		
 		LoggingUtils.getEvoLogger().info("* Going to generate test cases for class: "+target);
+		LoggingUtils.getEvoLogger().info("Reached generateTests in TestGeneration.java ");      //mycode
 		
 		if (!findTargetClass(target)) {
 		    return Arrays.asList(Arrays.asList(new TestGenerationResult[]{TestGenerationResultBuilder.buildErrorResult("Could not find target class") }));
