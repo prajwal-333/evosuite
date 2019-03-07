@@ -424,9 +424,9 @@ public class MonotonicGA<T extends Chromosome> extends GeneticAlgorithm<T> {
 			logger.info("Population size: " + population.size());
 			logger.info("Best individual has fitness: " + population.get(0).getFitness());
 			logger.info("Worst individual has fitness2: " + population.get(population.size() - 1).getFitness());
-			logger.info("Hello world");
+			//logger.info("Hello world");
 			//standard_deviation = 1000000000;
-			Properties.isCompleted = 1;
+			Properties.isCompleted = 1;		//mycode
 
 		}
 

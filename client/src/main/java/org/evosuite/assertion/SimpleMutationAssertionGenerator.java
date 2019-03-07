@@ -93,7 +93,7 @@ public class SimpleMutationAssertionGenerator extends MutationAssertionGenerator
 				ClientState state = ClientState.ASSERTION_GENERATION;
 				ClientStateInformation information = new ClientStateInformation(state);
 				information.setProgress((100 * numTest++) / suite.size());
-				logger.info("The type of node it is: " + ClientServices.getInstance().getClientNode().getClass());  //mycode
+				//logger.info("The type of node it is: " + ClientServices.getInstance().getClientNode().getClass());  //mycode
 				int i = Properties.isCompleted; //mycode
 				ClientServices.getInstance().getClientNode().mychangeState(state, information, i); //mycode
 				//ClientServices.getInstance().getClientNode().changeState(state, information);
