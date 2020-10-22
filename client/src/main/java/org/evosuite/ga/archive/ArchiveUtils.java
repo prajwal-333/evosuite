@@ -40,6 +40,7 @@ import org.evosuite.coverage.mutation.StrongMutationTestFitness;
 import org.evosuite.coverage.mutation.WeakMutationTestFitness;
 import org.evosuite.coverage.rho.RhoCoverageTestFitness;
 import org.evosuite.coverage.statement.StatementCoverageTestFitness;
+import org.evosuite.coverage.aes.branch.UnreachableBranchCoverageTestFitness;
 import org.evosuite.ga.FitnessFunction;
 import org.evosuite.runtime.util.AtMostOnceLogger;
 import org.evosuite.testcase.TestChromosome;
@@ -171,6 +172,11 @@ public final class ArchiveUtils {
           break;
         case TRYCATCH:
           if (goal instanceof TryCatchCoverageTestFitness) {
+            return true;
+          }
+          break;
+        case VCMDDU2:
+          if (goal instanceof BranchCoverageTestFitness || goal instanceof UnreachableBranchCoverageTestFitness) {
             return true;
           }
           break;
