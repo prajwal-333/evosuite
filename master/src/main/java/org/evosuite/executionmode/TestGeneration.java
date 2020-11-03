@@ -124,7 +124,7 @@ public class TestGeneration {
 	}
 
 	private static Strategy getChosenStrategy(List<String> javaOpts, CommandLine line) {
-		Strategy strategy = null;
+		Strategy strategy = Properties.STRATEGY;
 		if (javaOpts.contains("-Dstrategy="+Strategy.ENTBUG.name())
 				&& line.hasOption("generateTests")) {
 			strategy = Strategy.ENTBUG;

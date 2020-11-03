@@ -47,6 +47,7 @@ public class ProgressMonitor<T extends Chromosome<T>> implements SearchListener<
 	protected int lastCoverage;
 	protected int lastProgress;
 	protected int iteration;
+	protected double fitnessValue;
 	protected ClientState state;
 
 	public ProgressMonitor() {
@@ -67,6 +68,7 @@ public class ProgressMonitor<T extends Chromosome<T>> implements SearchListener<
 		this.lastProgress = that.lastProgress;
 		this.iteration = that.iteration;
 		this.state = that.state;
+		this.fitnessValue = that.fitnessValue;
 	}
 
 	/**
@@ -83,6 +85,7 @@ public class ProgressMonitor<T extends Chromosome<T>> implements SearchListener<
 		information.setCoverage(currentCoverage);
 		information.setProgress(percent);
 		information.setIteration(iteration);
+		information.setFitnessValue(fitnessValue);
 		//LoggingUtils.getEvoLogger().info("Setting to: "+state.getNumPhase()+": "+information.getCoverage()+"/"+information.getProgress());
 		ClientServices.getInstance().getClientNode().changeState(state, information);
 		lastProgress = percent;
@@ -117,7 +120,9 @@ public class ProgressMonitor<T extends Chromosome<T>> implements SearchListener<
 	public void iteration(GeneticAlgorithm<T> algorithm) {
 		long current = stoppingCondition.getCurrentValue();
 		currentCoverage = (int) Math.floor(algorithm.getBestIndividual().getCoverage() * 100);
+		fitnessValue = algorithm.getBestIndividual().getFitness();
 		updateStatus((int) (100 * current / max));
+
 		iteration++;
 	}
 
@@ -128,6 +133,7 @@ public class ProgressMonitor<T extends Chromosome<T>> implements SearchListener<
 	@Override
 	public void searchFinished(GeneticAlgorithm<T> algorithm) {
 		currentCoverage = (int) Math.floor(algorithm.getBestIndividual().getCoverage() * 100);
+		fitnessValue = algorithm.getBestIndividual().getFitness();
 		if(currentCoverage > lastCoverage) {
 			updateStatus((int) (100 * stoppingCondition.getCurrentValue() / max));
 		}
@@ -141,6 +147,7 @@ public class ProgressMonitor<T extends Chromosome<T>> implements SearchListener<
 	@Override
 	public void fitnessEvaluation(T individual) {
 		int current = (int) ((int)(100 * stoppingCondition.getCurrentValue())/max);
+		fitnessValue = individual.getFitness();
 		currentCoverage = (int) Math.floor(individual.getCoverage() * 100);
 		if(currentCoverage > lastCoverage || current > lastProgress)
 			updateStatus(current);

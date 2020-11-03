@@ -34,7 +34,7 @@ public class SystemInUtilTest {
 		SystemInUtil.resetSingleton();
 	}
 	
-	@Test(timeout=3000)
+	@Test(timeout=30000)
 	public void testDoubleExecution(){
 		
 		RuntimeSettings.mockSystemIn = true;

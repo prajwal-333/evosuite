@@ -34,6 +34,8 @@ public class ClientStateInformation implements Serializable {
 	private int coverage = 0;
 	
 	private int iteration = 0;
+
+	private double fitnessValue = 0.0d;
 	
 	public ClientStateInformation(ClientState state) {
 		this.state = state;
@@ -77,6 +79,13 @@ public class ClientStateInformation implements Serializable {
 		this.iteration = iteration;
 	}
 
+	public double getFitnessValue() {
+		return fitnessValue;
+	}
+
+	public void setFitnessValue(double fitnessValue) {
+		this.fitnessValue = fitnessValue;
+	}
 	@Override
 	public String toString() {
 		return state.toString() +" - " + iteration+", "+progress+", "+coverage;

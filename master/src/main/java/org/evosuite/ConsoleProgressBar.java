@@ -54,7 +54,7 @@ public class ConsoleProgressBar implements Listener<ClientStateInformation>{
 		
 		int percent = event.getProgress();
 		int coverage = event.getCoverage();
-		
+		double fitnessValue = event.getFitnessValue();
 		
 		StringBuilder bar = new StringBuilder("[Progress:");
 
@@ -81,7 +81,7 @@ public class ConsoleProgressBar implements Listener<ClientStateInformation>{
 		}
 
 		bar.append(coverage + "%]");
-
+		bar.append("[Fitness Value = " + fitnessValue +"]");
 		System.out.print("\r" + bar.toString());
 		
 	}
