@@ -60,6 +60,7 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
         int components = spectrum.getNumComponents();
         double[] avg_val = new double[components];
 
+		LoggingUtils.getEvoLogger().info("components --->>"+components);
         for(int i=0;i<components;i++)
         {
             double ones = 0d;
@@ -76,12 +77,13 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
                     avg_val[i] = (ones / (components - 1));
             }
         }
-        double sumWeights = 0d;
+        
         if(weights == null)
             return compute_mean(avg_val,components);
 
         double sum = 0d;
-        
+		double sumWeights = 0d;
+		
         for(int i=0;i<components;i++) {
         	String key=methods.get(i);
         	double weight=0d;

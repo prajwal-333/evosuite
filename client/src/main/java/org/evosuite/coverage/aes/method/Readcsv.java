@@ -25,7 +25,7 @@ public class Readcsv {
 		 LoggingUtils.getEvoLogger().info(System.getProperty("user.dir"));
 		 LoggingUtils.getEvoLogger().info("Static block");
 		      try {
-		         File file = new File("./client/src/main/java/org/evosuite/coverage/aes/method/Metrics.csv");
+		         File file = new File("/tmp/Metrics.csv");
 		    	  //File file = new File("/Users/mam/Desktop/project/csvReader/src/csvReader/Metrics.csv");
 		         FileReader fr = new FileReader(file);
 		         BufferedReader br = new BufferedReader(fr);
