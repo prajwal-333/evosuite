@@ -97,11 +97,12 @@ import java.util.Arrays;
 
 /**
  * factory class for fitness functions
+ * 
  * @author mattia
  *
  */
 public class FitnessFunctions {
-	
+
 	private static Logger logger = LoggerFactory.getLogger(FitnessFunctions.class);
 
 	/**
@@ -109,8 +110,7 @@ public class FitnessFunctions {
 	 * getFitnessFunction
 	 * </p>
 	 * 
-	 * @param criterion
-	 *            a {@link org.evosuite.Properties.Criterion} object.
+	 * @param criterion a {@link org.evosuite.Properties.Criterion} object.
 	 * @return a {@link org.evosuite.testsuite.TestSuiteFitnessFunction} object.
 	 */
 	public static TestSuiteFitnessFunction getFitnessFunction(Criterion criterion) {
@@ -170,7 +170,7 @@ public class FitnessFunctions {
 		case VCMDDU1:
 			return new AESBranchCoverageSuiteFitness(Metric.VCMDDU1);
 		case VCMDDU2:
-			return new AESBranchCoverageSuiteFitness(Metric.VCMDDU2);
+			return new AESMethodCoverageSuiteFitness(Metric.VCMDDU2);
 		case VRDDU:
 			return new AESBranchCoverageSuiteFitness(Metric.VRDDU);
 		case DDU_METHOD:
@@ -188,22 +188,21 @@ public class FitnessFunctions {
 		case TRYCATCH:
 			return new TryCatchCoverageSuiteFitness();
 		default:
-			logger.warn("No TestSuiteFitnessFunction defined for {}; using default one (BranchCoverageSuiteFitness)", Arrays.toString(Properties.CRITERION));
+			logger.warn("No TestSuiteFitnessFunction defined for {}; using default one (BranchCoverageSuiteFitness)",
+					Arrays.toString(Properties.CRITERION));
 			return new BranchCoverageSuiteFitness();
 		}
 	}
-	
+
 	/**
 	 * <p>
 	 * getFitnessFactory
 	 * </p>
 	 * 
-	 * @param crit
-	 *            a {@link org.evosuite.Properties.Criterion} object.
+	 * @param crit a {@link org.evosuite.Properties.Criterion} object.
 	 * @return a {@link org.evosuite.coverage.TestFitnessFactory} object.
 	 */
-	public static TestFitnessFactory<? extends TestFitnessFunction> getFitnessFactory(
-	        Criterion crit) {
+	public static TestFitnessFactory<? extends TestFitnessFunction> getFitnessFactory(Criterion crit) {
 		switch (crit) {
 		case STRONGMUTATION:
 		case MUTATION:
@@ -258,14 +257,14 @@ public class FitnessFunctions {
 			return new AESMethodCoverageFactory(true);
 		case VCMDDU1:
 		case VCMDDU2:
+			return new AESMethodCoverageFactory();
 		case DDU_BRANCH:
 		case DDU_BRANCH_DTR:
 			return new AESBranchCoverageFactory();
 		case TRYCATCH:
 			return new TryCatchCoverageFactory();
 		default:
-			logger.warn("No TestFitnessFactory defined for " + crit
-			        + " using default one (BranchCoverageFactory)");
+			logger.warn("No TestFitnessFactory defined for " + crit + " using default one (BranchCoverageFactory)");
 			return new BranchCoverageFactory();
 		}
 	}
@@ -280,53 +279,53 @@ public class FitnessFunctions {
 	public static Class<?> getTestFitnessFunctionClass(Criterion criterion) {
 		switch (criterion) {
 		case STRONGMUTATION:
-				return StrongMutationTestFitness.class;
+			return StrongMutationTestFitness.class;
 		case WEAKMUTATION:
-				return WeakMutationTestFitness.class;
+			return WeakMutationTestFitness.class;
 		case MUTATION:
-				return MutationTestFitness.class;
+			return MutationTestFitness.class;
 		case ONLYMUTATION:
-				return OnlyMutationTestFitness.class;
+			return OnlyMutationTestFitness.class;
 		case DEFUSE:
-				return DefUseCoverageTestFitness.class;
+			return DefUseCoverageTestFitness.class;
 		case BRANCH:
-				return BranchCoverageTestFitness.class;
+			return BranchCoverageTestFitness.class;
 		case CBRANCH:
-				return CBranchTestFitness.class;
+			return CBranchTestFitness.class;
 		case IBRANCH:
-				return IBranchTestFitness.class;
+			return IBranchTestFitness.class;
 		case STATEMENT:
-				return StatementCoverageTestFitness.class;
+			return StatementCoverageTestFitness.class;
 		case RHO:
-				return LineCoverageTestFitness.class;
+			return LineCoverageTestFitness.class;
 		case AMBIGUITY:
-				return LineCoverageTestFitness.class;
+			return LineCoverageTestFitness.class;
 		case ALLDEFS:
-				return AllDefsCoverageTestFitness.class;
+			return AllDefsCoverageTestFitness.class;
 		case EXCEPTION:
-				return ExceptionCoverageTestFitness.class;
+			return ExceptionCoverageTestFitness.class;
 		case REGRESSION:
-				throw new RuntimeException("No test fitness function defined for " + criterion.name());
+			throw new RuntimeException("No test fitness function defined for " + criterion.name());
 		case READABILITY:
-				throw new RuntimeException("No test fitness function defined for " + criterion.name());
+			throw new RuntimeException("No test fitness function defined for " + criterion.name());
 		case ONLYBRANCH:
-				return OnlyBranchCoverageTestFitness.class;
+			return OnlyBranchCoverageTestFitness.class;
 		case METHODTRACE:
-				return MethodTraceCoverageTestFitness.class;
+			return MethodTraceCoverageTestFitness.class;
 		case METHOD:
-				return MethodCoverageTestFitness.class;
+			return MethodCoverageTestFitness.class;
 		case METHODNOEXCEPTION:
-				return MethodNoExceptionCoverageTestFitness.class;
+			return MethodNoExceptionCoverageTestFitness.class;
 		case ONLYLINE:
-				return LineCoverageTestFitness.class;
+			return LineCoverageTestFitness.class;
 		case LINE:
-				return LineCoverageTestFitness.class;
+			return LineCoverageTestFitness.class;
 		case OUTPUT:
-				return OutputCoverageTestFitness.class;
+			return OutputCoverageTestFitness.class;
 		case INPUT:
-				return InputCoverageTestFitness.class;
+			return InputCoverageTestFitness.class;
 		case TRYCATCH:
-				return TryCatchCoverageTestFitness.class;
+			return TryCatchCoverageTestFitness.class;
 		case VDDU:
 		case VMDDU:
 		case VCDDU:
@@ -339,9 +338,9 @@ public class FitnessFunctions {
 		case DDU_PUBLIC_METHOD_DTR:
 		case DDU_BRANCH:
 		case DDU_BRANCH_DTR:
-				return LineCoverageTestFitness.class;
+			return LineCoverageTestFitness.class;
 		default:
-				throw new RuntimeException("No criterion defined for " + criterion.name());
+			throw new RuntimeException("No criterion defined for " + criterion.name());
 		}
 	}
 
