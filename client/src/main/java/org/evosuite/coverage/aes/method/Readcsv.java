@@ -52,7 +52,7 @@ public class Readcsv {
 	            		{
 	            			min_weight=d;
 	            		}
-	            		LoggingUtils.getEvoLogger().info("min_weight"+min_weight);
+	            		//LoggingUtils.getEvoLogger().info("min_weight"+min_weight);
 	            		//System.out.println(min_weight);
 	            		//System.out.println("size of map is "+map.size());
 	            	
