@@ -52,6 +52,7 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
 		Readcsv rd=new Readcsv();
 		
 		weights=rd.map;
+//		weights=null;
 		LoggingUtils.getEvoLogger().info("Updated number_of_1s_metric --->>");
         double[][] ochiai = spectrum.compute_ochiai();
         if(ochiai == null)
@@ -86,11 +87,12 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
         	double weight=0d;
         	if(!weights.containsKey(key))
         	{
-        	 LoggingUtils.getEvoLogger().info("rd.min_weight-->"+rd.min_weight);
+  //      	 LoggingUtils.getEvoLogger().info("rd.min_weight-->"+rd.min_weight);
         		weight=rd.min_weight;
         	}
         	else {
         		weight=weights.get(key);
+        	 LoggingUtils.getEvoLogger().info("weight = "+weight);
         	}
             sumWeights = sumWeights + weight;
             avg_val[i] = avg_val[i] * weight;
