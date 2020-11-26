@@ -101,7 +101,8 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
         	
 
         }
-      LoggingUtils.getEvoLogger().info("sWeighted matrix calculated-->");
+	  LoggingUtils.getEvoLogger().info("sWeighted matrix calculated-->");
+	  LoggingUtils.getEvoLogger().info("metric = "+sum/(sumWeights));
         return sum/(sumWeights);
 
     }
