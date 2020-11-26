@@ -48,7 +48,7 @@ public class Readcsv {
 		            	//value = value.substring(1, value.length() - 1);
 	            		double d=Double.parseDouble(value);
 	            		map.put(key, d);
-	            		if(min_weight>d)
+	            		if(min_weight>d && d != 0d)
 	            		{
 	            			min_weight=d;
 	            		}

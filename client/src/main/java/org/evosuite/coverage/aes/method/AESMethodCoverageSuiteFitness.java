@@ -89,7 +89,7 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
         	double weight=0d;
         	if(!weights.containsKey(key))
         	{
-  //      	 LoggingUtils.getEvoLogger().info("rd.min_weight-->"+rd.min_weight);
+       	 		LoggingUtils.getEvoLogger().info("rd.min_weight-->"+rd.min_weight);
         		weight=rd.min_weight;
         	}
         	else {
