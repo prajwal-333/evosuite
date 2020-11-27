@@ -2,9 +2,9 @@
 
 # usage: $0 <project-name> <version>
 
-export D4J_HOME="/home/sunny/prantiks-evosuite-and-d4j/defects4j"
+export D4J_HOME="/home/joel/ulysis/defects4j"
 export PATH="$PATH:$D4J_HOME/framework/bin"
-export OSA="/home/sunny/OpenStaticAnalyzer-4.0.0-x64-Linux/Java/OpenStaticAnalyzerJava"
+export OSA="/home/joel/ulysis/OpenStaticAnalyzer-4.0.0-x64-Linux/Java/OpenStaticAnalyzerJava"
 METRIC="MIMS"
 
 # checkout project source
