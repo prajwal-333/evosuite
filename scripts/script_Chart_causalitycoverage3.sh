@@ -4,8 +4,8 @@
 
 # basefolder="/home/ubuntu/abhijitc/evo_chart_causalitycoverage2"
 # d4j_home="/home/ubuntu/abhijitc"
-basefolder="/home/sunny/prantiks-evosuite-and-d4j/Chart_exps_3"
-d4j_home="/home/sunny/prantiks-evosuite-and-d4j/defects4j"
+basefolder="/home/joel/ulysis/exps/Chart_exps_3"
+d4j_home="/home/joel/ulysis/defects4j"
 
 
 mkdir -p "$basefolder"
