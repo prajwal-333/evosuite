@@ -1,10 +1,10 @@
 #!/bin/bash
 #i=1
-j=2
+#j=1
 
 # basefolder="/home/ubuntu/abhijitc/evo_chart_causalitycoverage2"
 # d4j_home="/home/ubuntu/abhijitc"
-basefolder="/home/sunny/prantiks-evosuite-and-d4j/Chart_exps_2"
+basefolder="/home/sunny/prantiks-evosuite-and-d4j/Chart_exps_4"
 d4j_home="/home/sunny/prantiks-evosuite-and-d4j/defects4j"
 
 
@@ -29,7 +29,7 @@ do
 	mkdir -p "$basefolder/$fts_temp"
 	mkdir -p "$basefolder/$fl_temp"
 	#cp /home/ubuntu/abhijitc/repos/d4j-j8-fl/d4j-fl-j8-testing/extracted_data/Closure/"$bugid".json /tmp/suspiciousnes_scores1.json
-	j=2
+	j=4
 	#for j in {1..5}
 	#do
 		iteration=$j
@@ -49,7 +49,7 @@ do
 		echo "collecting metrics"
 		echo "./metric_collection.sh Chart ${bugid}f"
 		./metric_collection.sh Chart "$bugid"f
-
+		
 		"$d4j_home"/defects4j/framework/bin/run_evosuite.pl -p Chart -v "$i"f -n "$bugid" -o "$basefolder/$bugfolder/$iteration" -c VCMDDU2 -b 600 -t "$basefolder/$evo_temp/$iteration"
 
 		mkdir -p "$basefolder/$bugfolder/$iteration"/Chart/evosuite-VCMDDU2/wfix_test_suite
