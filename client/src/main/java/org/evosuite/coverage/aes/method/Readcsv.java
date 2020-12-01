@@ -25,7 +25,10 @@ public class Readcsv {
 		 LoggingUtils.getEvoLogger().info(System.getProperty("user.dir"));
 		 LoggingUtils.getEvoLogger().info("Static block");
 		      try {
-		         File file = new File("../Metrics.csv");
+				 File file = new File(System.getProperty("user.dir")+"/../Metrics.csv");
+				 if(!file.isFile()) { 
+					LoggingUtils.getEvoLogger().info("file not found");
+				}
 		    	  //File file = new File("/Users/mam/Desktop/project/csvReader/src/csvReader/Metrics.csv");
 		         FileReader fr = new FileReader(file);
 		         BufferedReader br = new BufferedReader(fr);
