@@ -5,7 +5,7 @@ j=1
 # basefolder="/home/ubuntu/abhijitc/evo_chart_causalitycoverage2"
 # d4j_home="/home/ubuntu/abhijitc"
 basefolder="/home/joel/ulysis/exps/Chart_exps_1"
-d4j_home="/home/joel/ulysis/defects4j"
+d4j_home="/home/joel/ulysis"
 
 
 mkdir -p "$basefolder"
@@ -47,8 +47,8 @@ do
 		echo "folder created: $basefolder/$fl_temp/$iteration"
 
 		echo "collecting metrics"
-		echo "./metric_collection.sh Chart ${bugid}f"
-		./metric_collection.sh Chart "$bugid"f
+		echo "./metric_collection.sh Chart ${bugid}f $basefolder/$evo_temp/$iteration
+		./metric_collection.sh Chart "$bugid"f "$basefolder/$evo_temp/$iteration"
 		
 		"$d4j_home"/defects4j/framework/bin/run_evosuite.pl -p Chart -v "$i"f -n "$bugid" -o "$basefolder/$bugfolder/$iteration" -c VCMDDU2 -b 600 -t "$basefolder/$evo_temp/$iteration"
 

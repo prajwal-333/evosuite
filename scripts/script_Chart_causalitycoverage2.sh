@@ -5,7 +5,7 @@ j=2
 # basefolder="/home/ubuntu/abhijitc/evo_chart_causalitycoverage2"
 # d4j_home="/home/ubuntu/abhijitc"
 basefolder="/home/joel/ulysis/exps/Chart_exps_2"
-d4j_home="/home/joel/ulysis/defects4j"
+d4j_home="/home/joel/ulysis"
 
 
 mkdir -p "$basefolder"
