@@ -47,8 +47,8 @@ do
 		echo "folder created: $basefolder/$fl_temp/$iteration"
 
 		echo "collecting metrics"
-		echo "./metric_collection.sh Chart ${bugid}f"
-		./metric_collection.sh Chart "$bugid"f
+		echo "./metric_collection.sh Chart ${bugid}f $basefolder/$evo_temp/$iteration"
+		./metric_collection.sh Chart "$bugid"f "$basefolder/$evo_temp/$iteration"
 
 		"$d4j_home"/defects4j/framework/bin/run_evosuite.pl -p Chart -v "$i"f -n "$bugid" -o "$basefolder/$bugfolder/$iteration" -c VCMDDU2 -b 600 -t "$basefolder/$evo_temp/$iteration"
 
