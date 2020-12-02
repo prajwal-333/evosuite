@@ -12,7 +12,7 @@ d4j_home="/home/joel/ulysis"
 
 mkdir -p "$basefolder"
 echo "folder created: $basefolder"
-for i in {1..25}
+for i in {1..1}
 #for (( i=$1; i<=$2; i++ ))
 do
 
@@ -50,7 +50,7 @@ do
 
 		echo "collecting metrics"
 		echo "./metric_collection.sh ${projectname} ${bugid}f $basefolder/$evo_temp/$iteration"
-		./metric_collection.sh ${projectname} "$bugid"f "$basefolder/$evo_temp/$iteration"
+		../metric_collection.sh ${projectname} "$bugid"f "$basefolder/$evo_temp/$iteration"
 		
 		"$d4j_home"/defects4j/framework/bin/run_evosuite.pl -p ${projectname} -v "$i"f -n "$bugid" -o "$basefolder/$bugfolder/$iteration" -c VCMDDU2 -b 600 -t "$basefolder/$evo_temp/$iteration"
 

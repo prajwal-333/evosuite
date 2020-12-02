@@ -4,8 +4,8 @@
 projectname="Chart"
 # basefolder="/home/ubuntu/abhijitc/evo_chart_causalitycoverage2"
 # d4j_home="/home/ubuntu/abhijitc"
-basefolder="/home/joel/ulysis/exps/${projectname}_exps_3"
-d4j_home="/home/joel/ulysis"
+basefolder="/home/joel/ulysis/exps/${projectname}_exps_5"
+d4j_home="/home/joel/ulysis/"
 
 
 mkdir -p "$basefolder"
@@ -29,7 +29,7 @@ do
 	mkdir -p "$basefolder/$fts_temp"
 	mkdir -p "$basefolder/$fl_temp"
 	#cp /home/ubuntu/abhijitc/repos/d4j-j8-fl/d4j-fl-j8-testing/extracted_data/Closure/"$bugid".json /tmp/suspiciousnes_scores1.json
-	j=3
+	j=5
 	#for j in {1..5}
 	#do
 		iteration=$j
@@ -48,7 +48,7 @@ do
 
 		echo "collecting metrics"
 		echo "./metric_collection.sh ${projectname} ${bugid}f $basefolder/$evo_temp/$iteration"
-		./metric_collection.sh ${projectname} "$bugid"f "$basefolder/$evo_temp/$iteration"
+		../metric_collection.sh ${projectname} "$bugid"f "$basefolder/$evo_temp/$iteration"
 		
 		"$d4j_home"/defects4j/framework/bin/run_evosuite.pl -p ${projectname} -v "$i"f -n "$bugid" -o "$basefolder/$bugfolder/$iteration" -c VCMDDU2 -b 600 -t "$basefolder/$evo_temp/$iteration"
 
