@@ -94,7 +94,7 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
         	}
         	else {
         		weight=weights.get(key);
-        	 LoggingUtils.getEvoLogger().info("weight = "+weight);
+        	 //LoggingUtils.getEvoLogger().info("weight = "+weight);
         	}
             sumWeights = sumWeights + weight;
             avg_val[i] = avg_val[i] * weight;
@@ -104,7 +104,7 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
 
         }
 	//   LoggingUtils.getEvoLogger().info("sWeighted matrix calculated-->");
-	   LoggingUtils.getEvoLogger().info("metric = "+sum/(sumWeights));
+	   //LoggingUtils.getEvoLogger().info("metric = "+sum/(sumWeights));
         return sum/(sumWeights);
 
     }
