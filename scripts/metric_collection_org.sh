@@ -2,9 +2,9 @@
 
 # usage: $0 <project-name> <version>
 
-export D4J_HOME="/home/joel/ulysis/defects4j"
+export D4J_HOME="/data/joel/ulysis/defects4j"
 export PATH="$PATH:$D4J_HOME/framework/bin"
-export OSA="/home/joel/ulysis/OpenStaticAnalyzer-4.0.0-x64-Linux/Java/OpenStaticAnalyzerJava"
+export OSA="/data/joel/ulysis/OpenStaticAnalyzer-4.0.0-x64-Linux/Java/OpenStaticAnalyzerJava"
 METRIC="McCC"
 
 # # checkout project source

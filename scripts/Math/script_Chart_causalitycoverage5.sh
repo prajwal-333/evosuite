@@ -4,8 +4,8 @@
 projectname="Math"
 # basefolder="/home/ubuntu/abhijitc/evo_chart_causalitycoverage2"
 # d4j_home="/home/ubuntu/abhijitc"
-basefolder="/home/joel/ulysis/exps/${projectname}_exps_5"
-d4j_home="/home/joel/ulysis/"
+basefolder="/data/joel/ulysis/exps/${projectname}_exps_5"
+d4j_home="/data/joel/ulysis/"
 
 
 mkdir -p "$basefolder"
