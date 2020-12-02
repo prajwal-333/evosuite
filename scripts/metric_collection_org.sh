@@ -37,4 +37,5 @@ $OSA -projectName=$1 -projectBaseDir=$base_dir -resultsDir=/tmp/MetResults -curr
 
 # metric filtering
 csv_file="/tmp/MetResults/$1/java/$2/$1-Method.csv"
+mkdir -p /tmp/OSAMetrics/$1/$2
 python3 metric_filtering.py $csv_file $METRIC /tmp/OSAMetrics/$1/$2
