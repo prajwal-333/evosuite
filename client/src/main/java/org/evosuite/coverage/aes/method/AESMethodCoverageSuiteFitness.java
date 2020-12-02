@@ -60,7 +60,7 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
         int components = spectrum.getNumComponents();
         double[] avg_val = new double[components];
 
-		LoggingUtils.getEvoLogger().info("components --->>"+components);
+		//LoggingUtils.getEvoLogger().info("components --->>"+components);
         for(int i=0;i<components;i++)
         {
             double ones = 0d;
@@ -89,12 +89,12 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
         	double weight=0d;
         	if(!weights.containsKey(key))
         	{
-       	 		LoggingUtils.getEvoLogger().info("rd.min_weight-->"+rd.min_weight);
+       	 		//LoggingUtils.getEvoLogger().info("rd.min_weight-->"+rd.min_weight);
         		weight=rd.min_weight;
         	}
         	else {
         		weight=weights.get(key);
-        	 LoggingUtils.getEvoLogger().info("weight = "+weight);
+        	 //LoggingUtils.getEvoLogger().info("weight = "+weight);
         	}
             sumWeights = sumWeights + weight;
             avg_val[i] = avg_val[i] * weight;
@@ -103,8 +103,8 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
         	
 
         }
-	  LoggingUtils.getEvoLogger().info("sWeighted matrix calculated-->");
-	  LoggingUtils.getEvoLogger().info("metric = "+sum/(sumWeights));
+	//   LoggingUtils.getEvoLogger().info("sWeighted matrix calculated-->");
+	//   LoggingUtils.getEvoLogger().info("metric = "+sum/(sumWeights));
         return sum/(sumWeights);
 
     }
