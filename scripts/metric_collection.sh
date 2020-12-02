@@ -16,15 +16,15 @@ base_dir=""
 
 if [ $1 == "Chart" ]; then
  base_dir="/tmp/sources/$1/$2/source"
-elif [ $1 == "Closure"]; then 
+elif [ $1 == "Closure" ]; then 
  base_dir="/tmp/sources/$1/$2/src"
-elif [ $1 == "Lang"]; then 
+elif [ $1 == "Lang" ]; then 
  base_dir="/tmp/sources/$1/$2/src"
-elif [ $1 == "Math"]; then 
+elif [ $1 == "Math" ]; then 
  base_dir="/tmp/sources/$1/$2/src"
-elif [ $1 == "Mockito"]; then 
+elif [ $1 == "Mockito" ]; then 
  base_dir="/tmp/sources/$1/$2/src"
-elif [ $1 == "Time"]; then 
+elif [ $1 == "Time" ]; then 
  base_dir="/tmp/sources/$1/$2/src"
 fi
 

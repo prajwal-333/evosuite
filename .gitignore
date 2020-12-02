@@ -26,3 +26,4 @@ shaded/dependency-reduced-pom.xml
 standalone_runtime/dependency-reduced-pom.xml
 nbactions.xml
 logs/
+scripts/*.out
