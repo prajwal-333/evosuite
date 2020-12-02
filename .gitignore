@@ -27,3 +27,4 @@ standalone_runtime/dependency-reduced-pom.xml
 nbactions.xml
 logs/
 scripts/*.out
+scripts/*/*.out
