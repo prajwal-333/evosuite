@@ -2,9 +2,10 @@
 #i=1
 #j=1
 
+projectname="Chart"
 # basefolder="/home/ubuntu/abhijitc/evo_chart_causalitycoverage2"
 # d4j_home="/home/ubuntu/abhijitc"
-basefolder="/home/joel/ulysis/exps/Chart_exps_4"
+basefolder="/home/joel/ulysis/exps/${projectname}_exps_4"
 d4j_home="/home/joel/ulysis/"
 
 
@@ -47,22 +48,22 @@ do
 		echo "folder created: $basefolder/$fl_temp/$iteration"
 
 		echo "collecting metrics"
-		echo "./metric_collection.sh Chart ${bugid}f $basefolder/$evo_temp/$iteration"
-		./metric_collection.sh Chart "$bugid"f "$basefolder/$evo_temp/$iteration"
+		echo "./metric_collection.sh ${projectname} ${bugid}f $basefolder/$evo_temp/$iteration"
+		./metric_collection.sh ${projectname} "$bugid"f "$basefolder/$evo_temp/$iteration"
 		
-		"$d4j_home"/defects4j/framework/bin/run_evosuite.pl -p Chart -v "$i"f -n "$bugid" -o "$basefolder/$bugfolder/$iteration" -c VCMDDU2 -b 600 -t "$basefolder/$evo_temp/$iteration"
+		"$d4j_home"/defects4j/framework/bin/run_evosuite.pl -p ${projectname} -v "$i"f -n "$bugid" -o "$basefolder/$bugfolder/$iteration" -c VCMDDU2 -b 600 -t "$basefolder/$evo_temp/$iteration"
 
-		mkdir -p "$basefolder/$bugfolder/$iteration"/Chart/evosuite-VCMDDU2/wfix_test_suite
-		cp -a "$basefolder/$bugfolder/$iteration"/Chart/evosuite-VCMDDU2/"$bugid"/Chart-"$bugid"f-evosuite-VCMDDU2."$bugid".tar.bz2 "$basefolder/$bugfolder/$iteration"/Chart/evosuite-VCMDDU2/wfix_test_suite/
+		mkdir -p "$basefolder/$bugfolder/$iteration"/${projectname}/evosuite-VCMDDU2/wfix_test_suite
+		cp -a "$basefolder/$bugfolder/$iteration"/${projectname}/evosuite-VCMDDU2/"$bugid"/${projectname}-"$bugid"f-evosuite-VCMDDU2."$bugid".tar.bz2 "$basefolder/$bugfolder/$iteration"/${projectname}/evosuite-VCMDDU2/wfix_test_suite/
 
-			"$d4j_home"/defects4j/framework/util/fix_test_suite.pl -p Chart -d "$basefolder/$bugfolder/$iteration"/Chart/evosuite-VCMDDU2/"$bugid" -v "$bugid"f -t "$basefolder/$fts_temp/$iteration" -A
+			"$d4j_home"/defects4j/framework/util/fix_test_suite.pl -p ${projectname} -d "$basefolder/$bugfolder/$iteration"/${projectname}/evosuite-VCMDDU2/"$bugid" -v "$bugid"f -t "$basefolder/$fts_temp/$iteration" -A
 
 
-		mv "$basefolder/$bugfolder/$iteration"/Chart/evosuite-VCMDDU2/"$bugid"/Chart-"$bugid"f-evosuite-VCMDDU2."$bugid".tar.bz2 "$basefolder/$bugfolder/$iteration"/Chart/evosuite-VCMDDU2/"$bugid"/Chart-"$bugid"b-evosuite-VCMDDU2."$bugid".tar.bz2
+		mv "$basefolder/$bugfolder/$iteration"/${projectname}/evosuite-VCMDDU2/"$bugid"/${projectname}-"$bugid"f-evosuite-VCMDDU2."$bugid".tar.bz2 "$basefolder/$bugfolder/$iteration"/${projectname}/evosuite-VCMDDU2/"$bugid"/${projectname}-"$bugid"b-evosuite-VCMDDU2."$bugid".tar.bz2
 
 		mkdir -p "$basefolder/$bugfolder/$iteration"/fl
 
-			"$d4j_home"/defects4j/framework/bin/run_fault_localization.pl -p Chart -d "$basefolder/$bugfolder/$iteration"/Chart/evosuite-VCMDDU2/"$bugid" -o "$basefolder/$bugfolder/$iteration"/fl -t "$basefolder/$fl_temp/$iteration" -i  "$d4j_home"/defects4j/framework/projects/Chart/modified_classes/"$bugid".src -y sfl -e ochiai -g line
+			"$d4j_home"/defects4j/framework/bin/run_fault_localization.pl -p ${projectname} -d "$basefolder/$bugfolder/$iteration"/${projectname}/evosuite-VCMDDU2/"$bugid" -o "$basefolder/$bugfolder/$iteration"/fl -t "$basefolder/$fl_temp/$iteration" -i  "$d4j_home"/defects4j/framework/projects/${projectname}/modified_classes/"$bugid".src -y sfl -e ochiai -g line
 
 		rm -rf "$basefolder/$evo_temp/$iteration"
 		rm -rf "$basefolder/$fts_temp/$iteration"

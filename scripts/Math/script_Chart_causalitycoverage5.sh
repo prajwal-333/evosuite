@@ -1,7 +1,7 @@
 #!/bin/bash
 #i=1
 #j=1
-projectname="Chart"
+projectname="Math"
 # basefolder="/home/ubuntu/abhijitc/evo_chart_causalitycoverage2"
 # d4j_home="/home/ubuntu/abhijitc"
 basefolder="/home/joel/ulysis/exps/${projectname}_exps_5"
@@ -10,7 +10,7 @@ d4j_home="/home/joel/ulysis/"
 
 mkdir -p "$basefolder"
 echo "folder created: $basefolder"
-for i in {1..25}
+for i in {1..106}
 #for (( i=$1; i<=$2; i++ ))
 do
 
@@ -48,7 +48,7 @@ do
 
 		echo "collecting metrics"
 		echo "./metric_collection.sh ${projectname} ${bugid}f $basefolder/$evo_temp/$iteration"
-		./metric_collection.sh ${projectname} "$bugid"f "$basefolder/$evo_temp/$iteration"
+		../metric_collection.sh ${projectname} "$bugid"f "$basefolder/$evo_temp/$iteration"
 		
 		"$d4j_home"/defects4j/framework/bin/run_evosuite.pl -p ${projectname} -v "$i"f -n "$bugid" -o "$basefolder/$bugfolder/$iteration" -c VCMDDU2 -b 600 -t "$basefolder/$evo_temp/$iteration"
 

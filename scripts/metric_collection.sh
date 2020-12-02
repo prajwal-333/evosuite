@@ -7,9 +7,9 @@ export PATH="$PATH:$D4J_HOME/framework/bin"
 export OSA="/home/joel/ulysis/OpenStaticAnalyzer-4.0.0-x64-Linux/Java/OpenStaticAnalyzerJava"
 METRIC="MIMS"
 
-# checkout project source
-mkdir -p /tmp/sources/$1/$2
-defects4j checkout -p $1 -v $2 -w /tmp/sources/$1/$2
+# # checkout project source
+# mkdir -p /tmp/sources/$1/$2
+# defects4j checkout -p $1 -v $2 -w /tmp/sources/$1/$2
 
 # set project base dir
 base_dir=""

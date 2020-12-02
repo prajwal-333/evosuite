@@ -1,16 +1,18 @@
 #!/bin/bash
 #i=1
-#j=1
-projectname="Chart"
+j=1
+
+projectname="Mockito"
+
 # basefolder="/home/ubuntu/abhijitc/evo_chart_causalitycoverage2"
 # d4j_home="/home/ubuntu/abhijitc"
-basefolder="/home/joel/ulysis/exps/${projectname}_exps_5"
-d4j_home="/home/joel/ulysis/"
+basefolder="/home/joel/ulysis/exps/${projectname}_exps_1"
+d4j_home="/home/joel/ulysis"
 
 
 mkdir -p "$basefolder"
 echo "folder created: $basefolder"
-for i in {1..25}
+for i in {1..38}
 #for (( i=$1; i<=$2; i++ ))
 do
 
@@ -29,7 +31,7 @@ do
 	mkdir -p "$basefolder/$fts_temp"
 	mkdir -p "$basefolder/$fl_temp"
 	#cp /home/ubuntu/abhijitc/repos/d4j-j8-fl/d4j-fl-j8-testing/extracted_data/Closure/"$bugid".json /tmp/suspiciousnes_scores1.json
-	j=5
+	j=1
 	#for j in {1..5}
 	#do
 		iteration=$j
@@ -48,7 +50,7 @@ do
 
 		echo "collecting metrics"
 		echo "./metric_collection.sh ${projectname} ${bugid}f $basefolder/$evo_temp/$iteration"
-		./metric_collection.sh ${projectname} "$bugid"f "$basefolder/$evo_temp/$iteration"
+		../metric_collection.sh ${projectname} "$bugid"f "$basefolder/$evo_temp/$iteration"
 		
 		"$d4j_home"/defects4j/framework/bin/run_evosuite.pl -p ${projectname} -v "$i"f -n "$bugid" -o "$basefolder/$bugfolder/$iteration" -c VCMDDU2 -b 600 -t "$basefolder/$evo_temp/$iteration"
 
