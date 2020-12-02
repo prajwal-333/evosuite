@@ -53,7 +53,7 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
 		
 		weights=rd.map;
 //		weights=null;
-		LoggingUtils.getEvoLogger().info("Updated number_of_1s_metric --->>");
+		//LoggingUtils.getEvoLogger().info("Updated number_of_1s_metric --->>");
         double[][] ochiai = spectrum.compute_ochiai();
         if(ochiai == null)
             return 1d;
@@ -104,7 +104,7 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
 
         }
 	//   LoggingUtils.getEvoLogger().info("sWeighted matrix calculated-->");
-	//   LoggingUtils.getEvoLogger().info("metric = "+sum/(sumWeights));
+	   LoggingUtils.getEvoLogger().info("metric = "+sum/(sumWeights));
         return sum/(sumWeights);
 
     }
