@@ -39,3 +39,10 @@ $OSA -projectName=$1 -projectBaseDir=$base_dir -resultsDir=/tmp/MetResults -curr
 csv_file="/tmp/MetResults/$1/java/$2/$1-Method.csv"
 mkdir -p /tmp/OSAMetrics/$1/$2
 python3 metric_filtering.py $csv_file $METRIC /tmp/OSAMetrics/$1/$2
+cp $csv_file /tmp/OSAMetrics/$1/$2
+
+# delete metric intermediate
+rm -rf "/tmp/MetResults/$1/java/$2"
+# delete source files
+echo "deleting /tmp/sources/$1/$2/"
+rm -rf "/tmp/sources/$1/$2/"
