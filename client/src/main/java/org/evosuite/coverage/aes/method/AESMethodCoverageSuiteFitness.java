@@ -94,7 +94,7 @@ public class AESMethodCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
         	}
         	else {
         		weight=weights.get(key);
-        	 //LoggingUtils.getEvoLogger().info("weight = "+weight);
+        	 LoggingUtils.getEvoLogger().info("weight = "+weight);
         	}
             sumWeights = sumWeights + weight;
             avg_val[i] = avg_val[i] * weight;
