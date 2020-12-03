@@ -5,17 +5,17 @@ iteration=$3
 echo "project = $projectname, iteration=$iteration"
 bugno=0
 
-if [ $1 == "Chart" ]; then
+if [ "$projectname" == "Chart" ]; then
  bugno=26
-elif [ $1 == "Closure" ]; then 
+elif [ "$projectname" == "Closure" ]; then 
  bugno=133
-elif [ $1 == "Lang" ]; then 
+elif [ "$projectname" == "Lang" ]; then 
  bugno=65
-elif [ $1 == "Math" ]; then 
+elif [ "$projectname" == "Math" ]; then 
  bugno=106
-elif [ $1 == "Mockito" ]; then 
+elif [ "$projectname" == "Mockito" ]; then 
  bugno=38
-elif [ $1 == "Time" ]; then 
+elif [ "$projectname" == "Time" ]; then 
  bugno=27
 fi
 
