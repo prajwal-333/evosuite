@@ -19,7 +19,7 @@ elif [ "$projectname" == "Time" ]; then
  bugno=27
 fi
 
-for i in {1..$bugno}
+for i in $(seq 1 $bugno);
 do
     bugid="$i"
     echo "INFO: checking bug $bugid"
