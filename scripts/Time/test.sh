@@ -2,7 +2,7 @@
 #i=1
 j=1
 
-projectname="Chart"
+projectname="Time"
 
 # basefolder="/home/ubuntu/abhijitc/evo_chart_causalitycoverage2"
 # d4j_home="/home/ubuntu/abhijitc"
