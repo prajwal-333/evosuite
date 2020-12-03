@@ -28,3 +28,4 @@ nbactions.xml
 logs/
 scripts/*.out
 scripts/*/*.out
+scripts/*/*.zip
