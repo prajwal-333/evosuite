@@ -22,6 +22,7 @@ import org.evosuite.coverage.aes.Spectrum;
 import org.evosuite.coverage.branch.BranchCoverageTestFitness;
 import org.evosuite.testcase.TestFitnessFunction;
 import org.evosuite.testcase.execution.ExecutionResult;
+import org.evosuite.testsuite.TestSuiteChromosome;
 
 public class AESBranchCoverageSuiteFitness extends AbstractAESCoverageSuiteFitness {
 
@@ -194,7 +195,7 @@ public class AESBranchCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
         }else{
             Random rd = new Random();
             double rand=rd.nextDouble();
-            rand=rand*0.6;
+            rand=rand*0.1;
             weights.put(component_no, rand);
         }
 //            System.out.println(itr.next());
@@ -267,6 +268,11 @@ public class AESBranchCoverageSuiteFitness extends AbstractAESCoverageSuiteFitne
     protected double getSumWeights() {
         //return sumWeights;
         return 0d;
+    }
+
+    @Override
+    public double getFitness(TestSuiteChromosome individual) {
+        return 0;
     }
 }
 
